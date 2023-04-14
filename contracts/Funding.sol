@@ -2,7 +2,12 @@
 pragma solidity 0.8.9;
 
 contract Funding{
-    
+    //Event for Deposit functios
+    event Deposit(uint value,address user);
+
+    //Event for withdraw functions
+    event Withdraw(uint value,address manager);
+
     address public manager;
     string public name;
     string public Description;
@@ -38,6 +43,7 @@ contract Funding{
     function DepositFund()public payable{
         require(msg.value>=0.01 ether,"Please Donate more than 0.01 ether");
         Donator.push(msg.sender);
+        emit Deposit(msg.value,msg.sender);
     }
 
     function getBalance()public view returns(uint){
@@ -46,7 +52,9 @@ contract Funding{
 
     function WithdrawFund()public payable onlyManager{
         address payable to = payable(msg.sender);
+        emit Withdraw(getBalance(),msg.sender);
         to.transfer(getBalance());
+        
     }
 
     function GetDonator()public view returns(address[] memory){
