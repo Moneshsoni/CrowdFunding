@@ -11,3 +11,8 @@ REPORT_GAS=true npx hardhat test
 npx hardhat node
 npx hardhat run scripts/deploy.js
 ```
+### Argumen verify command
+#### npx hardhat verify --constructor-args arguments.js DEPLOYED_CONTRACT_ADDRESS
+
+## Polygon scan api key
+#### KDUE344NY1N55XVGURHMWTA13IK1PK2SVG
